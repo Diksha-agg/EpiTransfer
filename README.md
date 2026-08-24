@@ -26,6 +26,12 @@ Given two RGB frames from known camera poses, EpiTransfer computes dense corresp
 
 ## Pipeline
 
+<p align="center">
+  <img src="docs/images/Virtual_stereo_frame.png" width="600" alt="Virtual Stereo Frame synthesis using only 2 frames" />
+  <br />
+  <b>Original Image</b>
+</p>
+
 1. **Undistort** raw RealSense color frames using the calibrated intrinsics (`undiistorted_images.py`).
 2. **Estimate depth** between a previous and current frame (`depth_est_quat_withlidar.py`):
    - Load camera poses (quaternion + position) from mocap CSVs and average them per frame.
@@ -35,13 +41,6 @@ Given two RGB frames from known camera poses, EpiTransfer computes dense corresp
    - Project LIDAR points into the same image and compare against estimated depth (percent error, per-point plots).
 3. **Visualize** raw depth maps captured by the sensor for inspection (`visualize_depth.py`).
 
-## Scripts
-
-| Script | Purpose |
-|---|---|
-| `undiistorted_images.py` | Undistorts and resizes captured color images using the RealSense color camera intrinsics/distortion coefficients. |
-| `depth_est_quat_withlidar.py` | Full depth estimation pipeline: RAFT correspondences → RANSAC filtering → epipolar-geometry depth → LIDAR comparison. |
-| `visualize_depth.py` | Loads a raw depth/color image pair and renders a colorized (Turbo colormap) depth map. |
 
 ## Requirements
 
@@ -49,7 +48,6 @@ Given two RGB frames from known camera poses, EpiTransfer computes dense corresp
 - `numpy`, `pandas`, `opencv-python`, `matplotlib`, `pyyaml`, `torch`
 - [RAFT](https://github.com/princeton-vl/RAFT) (checked out locally; the path is currently added via `sys.path.append` in `depth_est_quat_withlidar.py` — update this to point at your own RAFT checkout)
 - A pretrained RAFT model checkpoint
-- Lidar utilities module (`lidar_utils.py`, providing `compare_depth_at_lidar_points`, `load_pcd_file`, `load_transformation_matrix`, `plot_lidar_depth_percent_error`, `project_points_to_image`, `transform_points_lidar_to_camera`, `filter_lidar_points`)
 
 ## Usage
 
@@ -73,18 +71,5 @@ python visualize_depth.py
 
 > Note: file paths (image directories, model checkpoints, RAFT location) are currently hardcoded at the top of each script — update them for your own data layout before running.
 
-## Example output
 
-Depth map with LIDAR overlay:
 
-![Depth map](docs/images/depth_map.png)
-
-Projected LIDAR points on the current frame:
-
-![LIDAR projection](docs/images/lidar_points.png)
-
-RAFT correspondence matches between frame pairs:
-
-![RAFT matches](docs/images/raft_matches.png)
-
-*(Drop your own output images into `docs/images/` using these filenames, or update the paths above.)*
