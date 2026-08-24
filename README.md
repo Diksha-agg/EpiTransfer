@@ -4,15 +4,10 @@ Monocular depth estimation from a moving RealSense camera using epipolar transfe
 
 Given two RGB frames from known camera poses, EpiTransfer computes dense correspondences with [RAFT](https://github.com/princeton-vl/RAFT) optical flow, filters them with fundamental-matrix RANSAC, derives the epipolar geometry from the relative camera pose, synthesize a virtual stereo frame and use stereo depth theory to find per-pixel depth. 
 
-![Original Image](docs/images/17_new.png)
-![Estimated Depth using EpiTransfer](docs/images/depth_map_take17_take15.png)
-![RGB-D depth](docs/images/depth_viz_img17_rgbd.png)
-
-
 <table>
   <tr>
     <td align="center">
-      <img src="docs/images/17_new.png" width="90%" alt="Original Image" />
+      <img src="docs/images/17_new.png" width="80%" alt="Original Image" />
       <br />
       <b>Original Image</b>
     </td>
