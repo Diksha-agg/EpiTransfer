@@ -1,8 +1,12 @@
 # EpiTransfer
 
-Monocular depth estimation from a moving RealSense camera using epipolar geometry, validated against LIDAR ground truth.
+Monocular depth estimation from a moving RealSense camera using epipolar transfer, validated against LIDAR ground truth.
 
-Given two RGB frames from known camera poses (position + orientation from motion-capture), EpiTransfer computes dense correspondences with [RAFT](https://github.com/princeton-vl/RAFT) optical flow, filters them with fundamental-matrix RANSAC, derives the epipolar geometry from the relative camera pose, and triangulates per-pixel depth. Estimated depth is then compared against LIDAR points projected into the same frame.
+Given two RGB frames from known camera poses, EpiTransfer computes dense correspondences with [RAFT](https://github.com/princeton-vl/RAFT) optical flow, filters them with fundamental-matrix RANSAC, derives the epipolar geometry from the relative camera pose, synthesize a virtual stereo frame and use stereo depth theory to find per-pixel depth. 
+
+![Original Image](docs/images/17_new.png)
+![Estimated Depth using EpiTransfer](depth_map_take17_take15.png)
+![RGB-D depth](depth_viz_img17_rgbd.png)
 
 ## Pipeline
 
