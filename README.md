@@ -12,7 +12,7 @@ Given two RGB frames from known camera poses, EpiTransfer computes dense corresp
 <table>
   <tr>
     <td align="center">
-      <img src="docs/images/17_new.png" width="100%" alt="Original Image" />
+      <img src="docs/images/17_new.png" width="90%" alt="Original Image" />
       <br />
       <b>Original Image</b>
     </td>
