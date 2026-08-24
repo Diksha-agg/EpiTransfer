@@ -27,7 +27,7 @@ Given two RGB frames from known camera poses, EpiTransfer computes dense corresp
 ## Pipeline
 
 <p align="center">
-  <img src="docs/images/Virtual_stereo_frame.png" width="600" alt="Virtual Stereo Frame synthesis using only 2 frames" />
+  <img src="docs/images/Virtual_stereo_frame.png" width="300" alt="Virtual Stereo Frame synthesis using only 2 frames" />
   <br />
   <b>Original Image</b>
 </p>
